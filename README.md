@@ -1,18 +1,18 @@
 # botica-pre-commit
 
 Mirror of [botica](https://github.com/collectiveai-team/botica) for prek and pre-commit: it holds
-the hook definitions and nothing else. The source is `lint/distribution/botica-pre-commit/` in the
+the hook definitions and nothing else. The source is `distribution/botica-pre-commit/` in the
 botica repository, copied here at each release (see "Releasing").
 
 ```toml
 # prek.toml
 [[repos]]
 repo = "https://github.com/collectiveai-team/botica-pre-commit"
-rev = "v0.11.0"
+rev = "v0.12.0"
 
 [[repos.hooks]]
 id = "botica"
-args = ["--select", "<the rules of prek-generic.toml>"]
+args = ["--select", "<the rules of the prek-base.toml of the base recipe>"]
 ```
 
 Hooks: `botica` (the rules that look at one file; gets the file names) and `botica-project` (the
