@@ -8,15 +8,18 @@ botica repository, copied here at each release (see "Releasing").
 # prek.toml
 [[repos]]
 repo = "https://github.com/collectiveai-team/botica-pre-commit"
-rev = "v0.12.0"
+rev = "v0.13.0"
 
 [[repos.hooks]]
 id = "botica"
-args = ["--select", "<the rules of the prek-base.toml of the base recipe>"]
+
+[[repos.hooks]]
+id = "botica-project"
 ```
 
 Hooks: `botica` (the rules that look at one file; gets the file names) and `botica-project` (the
-rules that need the whole project; gets none).
+rules that need the whole project; gets none). Both read the selection from the configuration of
+botica (`botica.toml` or `[tool.botica]`), the one that `botica recipe install` writes.
 
 ## Releasing
 
