@@ -8,23 +8,28 @@ botica repository, copied here at each release (see "Releasing").
 # prek.toml
 [[repos]]
 repo = "https://github.com/collectiveai-team/botica-pre-commit"
-rev = "v0.13.0"
+rev = "v0.14.0"
 
 [[repos.hooks]]
 id = "botica"
 
 [[repos.hooks]]
 id = "botica-project"
+
+[[repos.hooks]]
+id = "botica-agents-md"
+
+[[repos.hooks]]
+id = "botica-rubric"
 ```
 
 Hooks: `botica` (the rules that look at one file; gets the file names) and `botica-project` (the
 rules that need the whole project; gets none). Both read the selection from the configuration of
 botica (`botica.toml` or `[tool.botica]`), the one that `botica recipe install` writes.
+`botica-agents-md` and `botica-rubric` fail when the block of `AGENTS.md` or `.abide/rubric.json`
+differs from what `botica rules export` writes; run the export to update them.
 
 ## Releasing
 
-1. A `vX.Y.Z` tag in the botica repository builds the wheels and publishes them (see
-   `.github/workflows/botica-release.yml`).
-2. Here, set `version` and the `botica==` pin in `pyproject.toml` to `X.Y.Z`, commit, and tag
-   `vX.Y.Z`. Both versions must match, or prek installs a different binary than the tag names.
-3. `prek autoupdate` in a project moves `rev` to the new tag.
+The job `mirror` of `.github/workflows/botica-release.yml` in the botica repository updates and
+tags this repository. `prek update` in a project moves `rev` to the new tag.
